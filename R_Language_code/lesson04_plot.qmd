@@ -1,0 +1,62 @@
+#基础绘图
+set.seed(123)
+x <- 1:10
+y <- x^2 + rnorm(10, 0, 5)
+#创建一个分组变量grp，前5个是组A，后5个是组B
+grp <- factor(rep(c("A","B"), each = 5))
+vals <- c(18, 12, 10, 8)               
+names(vals) <- c("Q1","Q2","Q3","Q4")
+#一、plot函数
+#plot()函数,pch代表点的形状(19为实心圆),cex代表点的尺寸,col代表点/线的颜色,lty代表线形(2为虚线),lwd代表线宽,xlim/ylim规定x/y轴的范围,main="标题",sub="副标题",xlab/ylab代表x/y轴标签,axes表示是否绘制坐标轴,frame.plot代表是否绘制外边框)
+plot(x,y,type="b",pch=19,cex=1.2,col="darkblue",lty=2,lwd=2,xlim=c(0,12),main="图形标题",sub="副标题",xlab="x轴标签",ylab="y轴标签",axes=TRUE,frame.plot=TRUE)
+#lines()函数代表在现有图形上加“线”，lowess(x,y)代表拟合出一条平滑曲线,还可以换成其他直线，例如回归线等。
+lines(lowess(x, y), col="tomato", lwd=2, lty=1,type="s")  
+#points()函数代表在现有图上加“点”
+points(x[grp=="A"], y[grp=="A"], pch=19, col="royalblue", cex=0.5)
+points(x[grp=="B"], y[grp=="B"], pch=17, col="orange",    cex=0.5)
+#text()函数代表文本标注text(x坐标, y坐标, labels="文字", pos=位置, col=颜色)
+text(5, 50, "这是标注", pos=3, col="red")
+#abline()函数用于绘制参照线
+#水平线
+abline(h=mean(y),col="red",lty=2,lwd=2)
+#垂直线
+abline(v=5,col="grey",lty=3,lwd=12)
+#回归线
+fit<-lm(y~x)
+abline(fit,col="darkgreen",lwd=2) 
+#legend()函数用于标记图例,参数"topleft""topright""bottom"代表图例的位置，legend代表图例内容，cex/pt.cex代表文字/点的大小,ncol代表图例的列数，inset代表图例与图案边缘内缩的距离。
+legend("topleft",legend = c("组A","组B"),pch= c(19, 17),col=c("royalblue","orange"),
+pt.cex=0.9,bty="n",inset = 0.02,ncol=1, cex = 1.2)
+#二、barplot()条形图,参数：border:NA代表无边界,las:刻度文字方向,0竖直,1水平
+barplot(vals,beside = TRUE, col=c("#4C78A8","#F58518","#E45756","#72B7B2"),border = NA, ylim   = c(0, 20),main  ="barplot():季度销量",xlab= "季度", ylab = "数量",las=1)              
+#三、hist()直方图
+hist(y,
+     breaks = "Sturges",        
+     freq   = FALSE,            
+     col    = "skyblue",
+     border = "white",
+     main   = "hist(): 直方图（密度）",
+     xlab   = "Y",
+     ylim   = c(0, 0.08),
+     right  = TRUE)             
+lines(density(y), lwd=2, col="tomato")   
+#四、箱线图
+boxplot(y ~ grp,
+        col   = c("lightblue","moccasin"),
+        notch = TRUE,           
+        outline = TRUE,         
+        names = c("A组","B组"),
+        main  = "boxplot(): 分组箱线图",
+        ylab  = "Y 值")
+#五、饼图
+pie(vals,
+    labels = paste0(names(vals), " (", vals, ")"),
+    col    = c("#4C78A8","#F58518","#E45756","#72B7B2"),
+    radius = 1,                 
+    clockwise = TRUE,           
+    init.angle = 90,            
+    main   = "pie(): 饼图示例")
+
+
+
+
