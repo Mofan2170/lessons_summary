@@ -1,0 +1,17 @@
+data1_1 <- read.csv("D:/code/R_data/data1_1.csv")
+table1_1 <- read.csv("D:/code/R_data/table1_1.csv")
+#保存文件
+#write.csv(文件名,"文件路径/文件名.csv",row.names=FALSE),false代表不保存行名
+write.csv(table1_1,file="D:/code/R_data/test.csv")
+#保存为Rdata格式
+#save(对象1,对象2,file="文件路径/文件.RData")把两个对象整合到一个RData文件中
+save(data1_1,table1_1,file="D:/code/R_data/test.RData")
+#读取Rdata文件
+#load("文件路径/文件名")
+a<-load("D:/code/R_data/test.RData")
+
+
+
+
+
+
