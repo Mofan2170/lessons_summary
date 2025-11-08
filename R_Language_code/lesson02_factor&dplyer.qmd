@@ -1,0 +1,62 @@
+major <-c("大数据","软工","金融科技","计算机技术","信管")
+class(major)
+str(major)
+#因子factor(变量名)
+major2 <- factor(major)
+str(major)
+#查看因子水平
+levels(major2)
+#将因子转换为数值
+as.numeric(major2)
+#创建一个有序分类变量sat，存储五位学生的睡眠满意度
+sat <- c("非常满意","满意","一般","不满意")
+str(sat)
+sat2 <- factor(sat,ordered=TRUE)
+sat2
+sat3 <-factor(sat.ordered=TRUE,levels=c("非常满意","满意","一般","不满意"))
+sat3
+#exercise：结合生活中的经验，创建1个无序因子和1个有序因子，有序因子的顺序需要符合常识，用levels指定
+#无序
+fruit <-c("香蕉","苹果","西瓜","菠萝","桃子")
+fruit2 <-factor(fruit)
+fruit2
+levels(fruit2)
+#有序
+grade <-c("优","良","中等","及格","差")
+grade1 <- factor(grade,ordered=TRUE,levels=c("优","良","中等","及格","差"))
+grade1
+levels(grade1)
+
+
+#列表
+l <-list("这是一个列表")
+
+
+#dplyer包主要用法：函数(动词)
+library(dplyr)
+#要先导入数据data1_1
+#筛选行filter()
+data1_1  %>%  filter(性别=="女",专业=="金融学")
+#筛选列select()
+data1_1 %>% select(专业,性别)
+#去掉某列
+data1_1 %>% select(-性别) 
+#排序，默认升序arrange()
+data1_1 %>% arrange(网购金额)
+data1_1 %>% arrange(desc(网购金额))
+#新增变量/修改列mutate()
+data1_1 %>% mutate(扣税=网购金额*0.005)
+#汇总统计summarise()
+data1_1 %>% summarise(平均网购金额=mean(网购金额),人数=n())
+#分组group_by(),(需和summarise()配合使用)
+#分组返回的是tibble(本质上还是数据框)
+data1_1 %>% group_by(专业) %>% summarise(平均网购金额=mean(网购金额),人数=n())
+#长宽数据转换melt()函数
+#melt(数据,id.vars="保留的列名",variable.name="新生成的列名，存放原来的列名",value.name="数值，存放原来的数值")
+#加载包
+
+
+
+
+
+
