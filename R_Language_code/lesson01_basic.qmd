@@ -1,0 +1,72 @@
+#向量 
+#1.向量创建并赋值:name <- c() 
+#数字向量 
+grade <- c(98,68,96,78,85) 
+grade 
+#字符串向量 
+name <- c("张三","李四","王五","赵六","孙七") 
+name 
+#逻辑向量 
+logi <- c(TRUE,FALSE,TRUE,TRUE,TRUE) 
+logi
+#创建序列向量，如从1-100
+1:100
+#创建等间距类型的向量seq(from= ,to= ,by=步长)
+seq(1,9,by=2)
+seq(1,31,by=3)
+#创建1，2，4，9...100的幂向量:**或^
+square <- seq(1,10,by=1)
+square^2 
+square
+#创建命名向量(字典)
+bonus <-c (red=1,yellow=2,blue=3)
+bonus
+bonus['red']
+#2.向量索引
+#输入位置返回位置索引(索引从1开始)
+grade[2]
+#返回两个值
+name[2:3]
+#返回间隔的几个值
+name[c(1,3,5)]
+#3.向量计算
+#求平均数
+mean(grade)
+#最大/最小值
+max(grade)
+min(grade)
+#求和
+sum(grade)
+#4.向量排序sort(向量名,decreasing=FALSE/TRUE)升序/降序
+sort(grade,decreasing=TRUE) 
+#矩阵matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE,dimnames = NULL),byrow为TRUE表示按行填充
+score <-c(98,86,88,78)
+matrix(score,nrow=2,ncol=2,byrow=TRUE)
+class_2 <- matrix(score,nrow=2,ncol=2,byrow=TRUE)
+class_2
+#修改行名
+rownames(class_2) <- c("刘八","郑九") 
+#修改列名
+colnames(class_2) <- c("语文","数学")
+class_2
+#一次性生成矩阵
+matrix(score,nrow=2,ncol=2,byrow=TRUE,
+      dimnames=list( c("刘八","郑九") ,c("语文","数学")))
+#请生成一个2X4的矩阵（2行4列），数据为1:8， 行名为宁波、杭州，列名为春，夏，秋，冬，显示代码和输出结果
+wth <-c(1:8)
+wth
+matrix(wth,nrow=2,ncol=4,byrow=TRUE,
+      dimnames=list( c("宁波","杭州"),c("春","夏","秋","冬") ))
+#创建数据框:使用data.frame()赋值      
+region <- c("ningbo","hangzhou")
+GDP <- c(10000,15000)
+region_GDP <- data.frame(region,GDP)
+region_GDP
+#创建学生成绩的数据框
+stugrade <- data.frame(学生姓名=name,成绩=grade)
+stugrade
+
+
+
+
+
